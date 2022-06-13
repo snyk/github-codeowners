@@ -10,7 +10,6 @@
     "build": "tsc",
     "cli": "ts-node --transpile-only src/cli.ts",
     "cli:dist": "tsc && node dist/cli.js",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test": "jest",
     "pretest:int": "rm -rf tests/scratch",
     "test:int": "env JEST_JUNIT_OUTPUT_DIR=./tests/reports/int jest --testMatch  **/*.test.int.ts --ci"
@@ -34,8 +33,6 @@
     "jest-junit": "^11.0.1",
     "ts-jest": "^27.1.3",
     "ts-node": "^8.6.2",
-    "tslint": "^6.1.3",
-    "tslint-config-airbnb-base": "^0.3.0",
     "typescript": "~3.8.3",
     "uuid": "^8.2.0"
   },
