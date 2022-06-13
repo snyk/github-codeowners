@@ -36,6 +36,11 @@
     "typescript": "~3.8.3",
     "uuid": "^8.2.0"
   },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
   "bin": "dist/cli.js",
   "engines": {
     "node": ">=8.10"
