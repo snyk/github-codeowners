@@ -1,6 +1,5 @@
 {
-  "name": "github-codeowners",
-  "version": "0.2.1",
+  "name": "@snyk/github-codeowners",
   "description": "Handy tool for working with file ownership using Githubs CODEOWNERS file",
   "main": "dist/cli.js",
   "files": [
@@ -8,21 +7,19 @@
   ],
   "scripts": {
     "prepare": "npm run build",
-    "build": "rm -rf dist && tsc",
-    "cli": "ts-node src/cli.ts",
+    "build": "tsc",
+    "cli": "ts-node --transpile-only src/cli.ts",
     "cli:dist": "tsc && node dist/cli.js",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "test:unit": "jest",
-    "test:unit:coverage": "npm run test:unit -- --coverage",
+    "test": "jest",
     "pretest:int": "rm -rf tests/scratch",
-    "test:int": "env JEST_JUNIT_OUTPUT_DIR=./tests/reports/int jest --testMatch  **/*.test.int.ts --ci",
-    "coveralls": "coveralls"
+    "test:int": "env JEST_JUNIT_OUTPUT_DIR=./tests/reports/int jest --testMatch  **/*.test.int.ts --ci"
   },
-  "author": "jjmschofield@googlemail.com",
+  "author": "snyk.io",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jjmschofield/github-codeowners"
+    "url": "https://github.com/snyk/github-codeowners"
   },
   "dependencies": {
     "commander": "^4.1.1",
@@ -33,14 +30,13 @@
     "@types/jest": "^27.4.0",
     "@types/node": "^13.7.6",
     "@types/uuid": "^8.0.0",
-    "coveralls": "^3.1.0",
     "jest": "^27.4.7",
     "jest-junit": "^11.0.1",
     "ts-jest": "^27.1.3",
     "ts-node": "^8.6.2",
     "tslint": "^6.1.3",
     "tslint-config-airbnb-base": "^0.3.0",
-    "typescript": "^3.8.2",
+    "typescript": "~3.8.3",
     "uuid": "^8.2.0"
   },
   "bin": "dist/cli.js",

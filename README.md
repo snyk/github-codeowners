@@ -192,3 +192,5 @@ Check `github-codeowners <command> --help` for support for a given command, howe
 
 ## Shout outs
 Inspired by [codeowners](https://github.com/beaugunderson/codeowners#readme) but implemented in Typescript with extra bells and whistles.
+
+This project is a fork of [jjmschofield's version](https://github.com/jjmschofield/github-codeowners).
