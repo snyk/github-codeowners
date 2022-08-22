@@ -4,9 +4,9 @@ exports[`audit csv should calculate stats when asked: stderr 1`] = `""`;
 
 exports[`audit csv should calculate stats when asked: stdout 1`] = `
 "owner,files,lines
-total,10,35
-loved,10,35
-unloved,0,0
+total,10,35,100
+loved,10,35,100
+unloved,0,0,100
 @doctocat,3,0
 @global-owner1,4,35
 @global-owner2,4,35
@@ -19,9 +19,9 @@ exports[`audit csv should do all commands in combination when asked: stderr 1`] 
 
 exports[`audit csv should do all commands in combination when asked: stdout 1`] = `
 "owner,files,lines
-total,5,2
-loved,5,2
-unloved,0,0
+total,5,2,100
+loved,5,2,100
+unloved,0,0,100
 @global-owner1,2,2
 @global-owner2,2,2
 @js-owner,2,0
@@ -79,14 +79,14 @@ deep/nested-ignore/overridden-ignore.js,@js-owner
 exports[`audit jsonl should calculate stats when asked: stderr 1`] = `""`;
 
 exports[`audit jsonl should calculate stats when asked: stdout 1`] = `
-"{\\"total\\":{\\"files\\":10,\\"lines\\":35},\\"unloved\\":{\\"files\\":0,\\"lines\\":0},\\"loved\\":{\\"files\\":10,\\"lines\\":35},\\"owners\\":[{\\"owner\\":\\"@global-owner1\\",\\"counters\\":{\\"files\\":4,\\"lines\\":35}},{\\"owner\\":\\"@global-owner2\\",\\"counters\\":{\\"files\\":4,\\"lines\\":35}},{\\"owner\\":\\"@doctocat\\",\\"counters\\":{\\"files\\":3,\\"lines\\":0}},{\\"owner\\":\\"@octocat\\",\\"counters\\":{\\"files\\":1,\\"lines\\":0}},{\\"owner\\":\\"@js-owner\\",\\"counters\\":{\\"files\\":2,\\"lines\\":0}}]}
+"{\\"total\\":{\\"files\\":10,\\"lines\\":35,\\"percentage\\":100},\\"unloved\\":{\\"files\\":0,\\"lines\\":0,\\"percentage\\":0},\\"loved\\":{\\"files\\":10,\\"lines\\":35,\\"percentage\\":100},\\"owners\\":[{\\"owner\\":\\"@global-owner1\\",\\"counters\\":{\\"files\\":4,\\"lines\\":35,\\"percentage\\":40}},{\\"owner\\":\\"@global-owner2\\",\\"counters\\":{\\"files\\":4,\\"lines\\":35,\\"percentage\\":40}},{\\"owner\\":\\"@doctocat\\",\\"counters\\":{\\"files\\":3,\\"lines\\":0,\\"percentage\\":30}},{\\"owner\\":\\"@octocat\\",\\"counters\\":{\\"files\\":1,\\"lines\\":0,\\"percentage\\":10}},{\\"owner\\":\\"@js-owner\\",\\"counters\\":{\\"files\\":2,\\"lines\\":0,\\"percentage\\":20}}]}
 "
 `;
 
 exports[`audit jsonl should do all commands in combination when asked: stderr 1`] = `""`;
 
 exports[`audit jsonl should do all commands in combination when asked: stdout 1`] = `
-"{\\"total\\":{\\"files\\":5,\\"lines\\":2},\\"unloved\\":{\\"files\\":0,\\"lines\\":0},\\"loved\\":{\\"files\\":5,\\"lines\\":2},\\"owners\\":[{\\"owner\\":\\"@octocat\\",\\"counters\\":{\\"files\\":1,\\"lines\\":0}},{\\"owner\\":\\"@global-owner1\\",\\"counters\\":{\\"files\\":2,\\"lines\\":2}},{\\"owner\\":\\"@global-owner2\\",\\"counters\\":{\\"files\\":2,\\"lines\\":2}},{\\"owner\\":\\"@js-owner\\",\\"counters\\":{\\"files\\":2,\\"lines\\":0}}]}
+"{\\"total\\":{\\"files\\":5,\\"lines\\":2,\\"percentage\\":100},\\"unloved\\":{\\"files\\":0,\\"lines\\":0,\\"percentage\\":0},\\"loved\\":{\\"files\\":5,\\"lines\\":2,\\"percentage\\":100},\\"owners\\":[{\\"owner\\":\\"@octocat\\",\\"counters\\":{\\"files\\":1,\\"lines\\":0,\\"percentage\\":20}},{\\"owner\\":\\"@global-owner1\\",\\"counters\\":{\\"files\\":2,\\"lines\\":2,\\"percentage\\":40}},{\\"owner\\":\\"@global-owner2\\",\\"counters\\":{\\"files\\":2,\\"lines\\":2,\\"percentage\\":40}},{\\"owner\\":\\"@js-owner\\",\\"counters\\":{\\"files\\":2,\\"lines\\":0,\\"percentage\\":40}}]}
 "
 `;
 
@@ -142,15 +142,15 @@ exports[`audit simple should calculate stats when asked: stderr 1`] = `""`;
 exports[`audit simple should calculate stats when asked: stdout 1`] = `
 "
 --- Counts ---
-Total: 10 files (35 lines)
-Loved: 10 files (35 lines)
-Unloved: 0 files (0 lines)
+Total: 10 files (35 lines) 100%
+Loved: 10 files (35 lines) 100%
+Unloved: 0 files (0 lines 0%
 --- Owners ---
-@doctocat: 3 files (0 lines)
-@global-owner1: 4 files (35 lines)
-@global-owner2: 4 files (35 lines)
-@js-owner: 2 files (0 lines)
-@octocat: 1 files (0 lines)
+@doctocat: 3 files (0 lines) 30%
+@global-owner1: 4 files (35 lines) 40%
+@global-owner2: 4 files (35 lines) 40%
+@js-owner: 2 files (0 lines) 20%
+@octocat: 1 files (0 lines) 10%
 "
 `;
 
@@ -159,14 +159,14 @@ exports[`audit simple should do all commands in combination when asked: stderr 1
 exports[`audit simple should do all commands in combination when asked: stdout 1`] = `
 "
 --- Counts ---
-Total: 5 files (2 lines)
-Loved: 5 files (2 lines)
-Unloved: 0 files (0 lines)
+Total: 5 files (2 lines) 100%
+Loved: 5 files (2 lines) 100%
+Unloved: 0 files (0 lines 0%
 --- Owners ---
-@global-owner1: 2 files (2 lines)
-@global-owner2: 2 files (2 lines)
-@js-owner: 2 files (0 lines)
-@octocat: 1 files (0 lines)
+@global-owner1: 2 files (2 lines) 40%
+@global-owner2: 2 files (2 lines) 40%
+@js-owner: 2 files (0 lines) 40%
+@octocat: 1 files (0 lines) 20%
 "
 `;
 
