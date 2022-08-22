@@ -39,11 +39,11 @@ Ownership stats:
 ```shell script
 $ github-codeowners audit -s
 --- Counts ---
-Total: 24 files (1378 lines)
-Loved: 10 files (494 lines)
-Unloved: 14 files (884 lines)
+Total: 24 files (1378 lines) 100%
+Loved: 10 files (494 lines) 41.6%
+Unloved: 14 files (884 lines) 58.4%
 --- Owners ---
-@jjmschofield: 10 files (494 lines)
+@jjmschofield: 10 files (494 lines) 41.6%
 ```
 
 Only files in a specific directory:
