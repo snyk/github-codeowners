@@ -1,6 +1,7 @@
 export interface Counters {
   files: number;
   lines: number;
+  percentage: number;
 }
 
 export interface Stats {

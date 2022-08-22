@@ -1,15 +1,22 @@
 import { File } from '../file';
 import { Counters, Stats } from './types';
 
+
+export function percentageToFixed(dividend: number, divisor: number, precision: number = 2): number {
+  return parseFloat(((dividend / divisor) * 100).toFixed(precision))
+}
+
 export const calcFileStats = (files: File[]): Stats => {
   const total: Counters = {
     files: 0,
     lines: 0,
+    percentage: 0.0
   };
 
   const unloved: Counters = {
     files: 0,
     lines: 0,
+    percentage: 0
   };
 
   const ownerCount = new Map<string, Counters>();
@@ -23,7 +30,7 @@ export const calcFileStats = (files: File[]): Stats => {
       if(typeof file.lines === 'number') unloved.lines += file.lines;
     } else {
       for (const owner of file.owners) {
-        const counts = ownerCount.get(owner) || { files: 0, lines: 0 };
+        const counts = ownerCount.get(owner) || { files: 0, lines: 0, percentage: 0 };
         counts.files++;
         if(typeof file.lines === 'number') counts.lines += file.lines;
         ownerCount.set(owner, counts);
@@ -32,21 +39,31 @@ export const calcFileStats = (files: File[]): Stats => {
   }
 
   return {
-    total,
-    unloved,
+    total: {
+      ...total,
+      percentage: 100
+    },
+    unloved: {
+      ...unloved,
+      percentage: percentageToFixed(unloved.files, total.files)
+    },
     loved: {
       files: total.files - unloved.files,
       lines: total.lines - unloved.lines,
+      percentage: percentageToFixed(total.files - unloved.files, total.files)
     },
     owners: Array.from(ownerCount.keys()).map((owner) => {
       const counts = ownerCount.get(owner);
+
       return {
         owner,
         counters: {
           files: counts ? counts.files : 0,
           lines: counts ? counts.lines : 0,
+          percentage: counts ? percentageToFixed(counts.files, total.files) : 0
         },
       };
     }),
   };
 };
+
