@@ -13,12 +13,12 @@ export const writer = (stats: Stats, options: { output: OUTPUT_FORMAT }, stream:
       stream.write(`${JSON.stringify(stats)}\n`);
       break;
     case(OUTPUT_FORMAT.CSV):
-      stream.write(`owner,files,lines\n`);
+      stream.write(`owner,files,lines,percentage\n`);
       stream.write(`total,${stats.total.files},${stats.total.lines},${stats.total.percentage}\n`);
       stream.write(`loved,${stats.loved.files},${stats.loved.lines},${stats.total.percentage}\n`);
       stream.write(`unloved,${stats.unloved.files},${stats.unloved.lines},${stats.total.percentage}\n`);
       orderedOwners.forEach((owner) => {
-        stream.write(`${owner.owner},${owner.counters.files},${owner.counters.lines}\n`);
+        stream.write(`${owner.owner},${owner.counters.files},${owner.counters.lines},${owner.counters.percentage}\n`);
       });
       break;
     default:
