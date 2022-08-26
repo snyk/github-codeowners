@@ -15,8 +15,8 @@ export const writer = (stats: Stats, options: { output: OUTPUT_FORMAT }, stream:
     case(OUTPUT_FORMAT.CSV):
       stream.write(`owner,files,lines,percentage\n`);
       stream.write(`total,${stats.total.files},${stats.total.lines},${stats.total.percentage}\n`);
-      stream.write(`loved,${stats.loved.files},${stats.loved.lines},${stats.total.percentage}\n`);
-      stream.write(`unloved,${stats.unloved.files},${stats.unloved.lines},${stats.total.percentage}\n`);
+      stream.write(`loved,${stats.loved.files},${stats.loved.lines},${stats.loved.percentage}\n`);
+      stream.write(`unloved,${stats.unloved.files},${stats.unloved.lines},${stats.unloved.percentage}\n`);
       orderedOwners.forEach((owner) => {
         stream.write(`${owner.owner},${owner.counters.files},${owner.counters.lines},${owner.counters.percentage}\n`);
       });
