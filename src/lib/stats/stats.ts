@@ -45,12 +45,12 @@ export const calcFileStats = (files: File[]): Stats => {
     },
     unloved: {
       ...unloved,
-      percentage: percentageToFixed(unloved.files, total.files)
+      percentage: percentageToFixed(unloved.lines, total.lines)
     },
     loved: {
       files: total.files - unloved.files,
       lines: total.lines - unloved.lines,
-      percentage: percentageToFixed(total.files - unloved.files, total.files)
+      percentage: percentageToFixed(total.lines - unloved.lines, total.lines)
     },
     owners: Array.from(ownerCount.keys()).map((owner) => {
       const counts = ownerCount.get(owner);
@@ -60,7 +60,7 @@ export const calcFileStats = (files: File[]): Stats => {
         counters: {
           files: counts ? counts.files : 0,
           lines: counts ? counts.lines : 0,
-          percentage: counts ? percentageToFixed(counts.files, total.files) : 0
+          percentage: counts ? percentageToFixed(counts.lines, total.lines) : 0
         },
       };
     }),
