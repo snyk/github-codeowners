@@ -41,7 +41,7 @@ export class OwnershipEngine {
 
   public static FromCodeownersFile(filePath: string) {
     try {
-      const lines = fs.readFileSync(filePath).toString().split('\n');
+      const lines = fs.readFileSync(filePath).toString().replace(/\r/g, '').split('\n');
 
       const owned: FileOwnershipMatcher[] = [];
 
