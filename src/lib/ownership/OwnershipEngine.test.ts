@@ -158,6 +158,16 @@ describe('OwnershipEngine', () => {
       expect(() => OwnershipEngine.FromCodeownersFile('some/codeowners/file'))
         .toThrowError(expectedError);
     });
+
+    it('should parse CRLF files (#4)', () => {
+      // Arrange
+      const codeowners = 'some/path @global-owner1 @org/octocat docs@example.com\r\n';
+
+      readFileSyncMock.mockReturnValue(Buffer.from(codeowners));
+
+      // Assert
+      expect(() => OwnershipEngine.FromCodeownersFile('some/codeowners/file')).not.toThrow();
+    });
   });
 
   describe.each<any>(patterns)('$name: "$pattern"', ({ name, pattern, paths }) => {
