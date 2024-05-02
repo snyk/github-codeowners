@@ -34,7 +34,8 @@ commander.command('audit')
         options.dir = path.resolve(options.dir, options.root);
       }
 
-      await audit(options);
+      let result = await audit(options);
+      process.exit(result ? 0 : 1);
     } catch (error) {
       log.error('failed to run audit command', error);
       process.exit(1);
@@ -56,7 +57,8 @@ commander.command('validate')
         options.dir = path.resolve(options.dir, options.root);
       }
 
-      await validate(options);
+      let result = await validate(options);
+      process.exit(result ? 0 : 1);
     } catch (error) {
       log.error('failed to run validate command', error);
       process.exit(1);

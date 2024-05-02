@@ -19,22 +19,26 @@ export const audit = async (options: AuditOptions) => {
   const filePaths = await getFilePaths(options.dir, strategy, options.root);
 
   const files = await getOwnership(options.codeowners, filePaths);
+  let success = true;
 
   if (options.stats) {
     await pMap(files, f => f.updateLineCount(), { concurrency: 100 });
 
     const stats = calcFileStats(files);
     statsWriter(stats, options, process.stdout);
-    return;
+    return success;
   }
 
   for (const file of files) {
     if (options.unloved) {
       if (file.owners.length < 1) {
+        success = false;
         file.write(options.output, process.stdout);
       }
     } else {
       file.write(options.output, process.stdout);
     }
   }
+
+  return success;
 };
