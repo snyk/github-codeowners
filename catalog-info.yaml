@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: github-codeowners
+spec:
+  type: external-tooling
+  lifecycle: "-"
+  owner: arch
