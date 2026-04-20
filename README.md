@@ -195,7 +195,7 @@ Full usage information:
 $ github-codeowners validate --help
 Usage: github-codeowners validate [options]
 
-Validates a CODOWNER file and files in dir
+Validates a CODEOWNERS file and files in dir
 
 Options:
   -d, --dir <dirPath>          path to VCS directory (default: "<current working directory>")
